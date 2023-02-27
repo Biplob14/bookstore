@@ -7,6 +7,11 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name', )}
 
+@admin.register(Product)
+class ProductFilter(admin.ModelAdmin):
+    list_display = ['title', 'author', 'category', 'price']
+    list_filter = ['in_stock', 'is_active']
+    prepopulated_fields = {'slug_field': ('title', )}
+
 admin.site.register(Author)
 admin.site.register(Publisher)
-admin.site.register(Product)
