@@ -1,13 +1,22 @@
 {% extends "base.html" %}
-{% load static %}
+{% comment %} {% load static %} {% endcomment %}
 
 {% block title %}All Books{% endblock %}
 {% block content %}
 
     {% for book in books %}
-        <p>{{ book }}</p>
-        <img src={{ book.cover.url }}>
-        
+    <div class='col'>
+        <div class='card cards_book h-100'>
+            <div class="book-img">
+                <img src={{ book.cover.url }} class="card-img-top">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ book.title|title }}</h5>
+                <b>{{book.author}}</b>
+                <p class="card-text">{{ book.description|capfirst|truncatechars:50 }}</p>
+            </div>
+        </div>
+    </div>
     {% endfor %}
 
 {% endblock %}
