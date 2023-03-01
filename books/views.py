@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Author, Category, Publisher, Product
 
 # Create your views here.
@@ -14,3 +14,10 @@ def book_list(request):
         'books': books
     }
     return render(request, 'books.html', context)
+
+def book_details(request, slug):
+    book = get_object_or_404(Product, slug_field=slug, in_stock=True)
+    context = {
+        "book": book
+    }
+    return render(request, 'book_details.html', context)

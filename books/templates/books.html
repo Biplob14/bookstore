@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% comment %} {% load static %} {% endcomment %}
 
 {% block title %}All Books{% endblock %}
 {% block content %}
@@ -12,7 +11,7 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ book.title|title }}</h5>
-                <b>{{book.author}}</b>
+                <a href="{{book.author.url}}"><b>{{book.author}}</b></a>
                 <p class="card-text">{{ book.description|capfirst|truncatechars:50 }}</p>
             </div>
         </div>
