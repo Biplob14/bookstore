@@ -1,3 +1,7 @@
+:root {
+    --radiant-blue: #1cbfff;
+}
+
 * {
     margin: 0 auto;
 }
@@ -6,7 +10,7 @@ body {
 }
 
 .nav-link:hover {
-    color: #1cbfff !important;
+    color: var(--radiant-blue) !important;
 }
 
 .book-img {
@@ -17,8 +21,20 @@ body {
     max-height: 420px;
     transition: color linear .2s;
 }
-
+.book-img>img {
+    height: 400px;
+    object-fit: cover;
+    
+}
 .book-img:hover {
-    opacity: .6;
+    opacity: .6 red;
     /* transition: opacity .5s ease-in-out; */
+}
+
+.quantity-box:hover {
+    border-color: var(--radiant-blue);
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1
 }

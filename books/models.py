@@ -1,10 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 class Author(models.Model):
     name = models.CharField(max_length=256)
     image = models.ImageField(upload_to='images/author/', blank=True)
+    slug_field = models.SlugField(max_length=256, blank=True)
+
+    def get_absolute_url(self):
+        return reverse("books:author_books", kwargs=[self.slug_field])
+    
     
     def __str__(self):
         return self.name
@@ -14,8 +20,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length=256, unique=True)
 
     class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+        verbose_name_plural = 'Categories'    
 
     def __str__(self):
         return self.name
@@ -44,6 +49,10 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
-        
+
+    def get_absolute_url(self):
+        return reverse('books:book_details', args=[self.slug_field])
+
+
     def __str__(self):
         return self.title
