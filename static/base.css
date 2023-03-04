@@ -38,3 +38,21 @@ body {
 input[type=number]::-webkit-inner-spin-button {
     opacity: 1
 }
+
+.cover-cover {
+    overflow: hidden;
+}
+
+.bg-image {
+    /* height: 400px; */
+    background-repeat: no-repeat;
+    width: 1000vw;
+    height: 30vh;
+    max-height: 250px;
+
+    background-size: cover;
+    background-position: center;
+    filter: blur(12px);
+    z-index: -1;
+    border: 2px solid var(--radiant-blue);
+}

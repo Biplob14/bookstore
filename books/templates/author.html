@@ -2,5 +2,12 @@
 {% block title %} {{ author.name }} {%endblock%}
 
 {% block content %}
-    
+    <div class="row bg-image rounded mt-1 z-index-n1" style="background-image: url({{author.image.url}});">
+        <div class="col-3">
+            <img src="{{ author.image.url }}" alt="" class="img-fluid">
+        </div>
+        <div class="col-9">
+            name
+        </div>
+    </div>
 {% endblock %}
