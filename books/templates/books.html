@@ -11,7 +11,7 @@
             </div>
             <div class="card-body text-center d-flex flex-column align-items-center justify-content-end">
                 <a href="{{ book.get_absolute_url }}"><h5 class="card-title">{{ book.title|title }}</h5></a>
-                <a href="{{book.author.url}}"><b>{{book.author}}</b></a>
+                <a href="{{ book.author.get_absolute_url }}"><b>{{book.author}}</b></a>
                 <p class="card-text">{{ book.description|capfirst|truncatechars:50 }}</p>
             </div>
         </div>

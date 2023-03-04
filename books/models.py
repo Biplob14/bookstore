@@ -9,7 +9,8 @@ class Author(models.Model):
     slug_field = models.SlugField(max_length=256, blank=True)
 
     def get_absolute_url(self):
-        return reverse("books:author_books", kwargs=[self.slug_field])
+        return reverse("books:author_books", args=[self.slug_field])
+
     
     
     def __str__(self):
