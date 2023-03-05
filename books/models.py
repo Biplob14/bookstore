@@ -1,17 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Author(models.Model):
     name = models.CharField(max_length=256)
     image = models.ImageField(upload_to='images/author/', blank=True)
     slug_field = models.SlugField(max_length=256, blank=True)
+    bio = models.TextField(blank=True)
 
     def get_absolute_url(self):
         return reverse("books:author_books", args=[self.slug_field])
 
-    
     
     def __str__(self):
         return self.name
@@ -46,6 +47,7 @@ class Product(models.Model):
     in_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     slug_field = models.SlugField(max_length=256, unique=True)
+    rating = models.IntegerField(default=0, validators = [MaxValueValidator(5), MinValueValidator(1)])
 
     class Meta:
         verbose_name = 'Product'

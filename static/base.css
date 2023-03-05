@@ -41,18 +41,34 @@ input[type=number]::-webkit-inner-spin-button {
 
 .cover-cover {
     overflow: hidden;
+    height: 30vh;
 }
+
+
+.author-image {
+    height: 30vh;
+    width: auto;
+}
+
 
 .bg-image {
     /* height: 400px; */
     background-repeat: no-repeat;
-    width: 1000vw;
+    width: 100%;
     height: 30vh;
     max-height: 250px;
 
     background-size: cover;
     background-position: center;
     filter: blur(12px);
+    opacity: .6;
     z-index: -1;
-    border: 2px solid var(--radiant-blue);
+    /* border: 2px solid var(--radiant-blue); */
+    overflow: hidden;
+}
+
+.author-name-text>p {
+    background-color: #1cbfff24;
+    color: #fff;
+    font-size: 1.5rem;
 }
