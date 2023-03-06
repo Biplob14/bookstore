@@ -31,3 +31,14 @@ def author_books(request, slug):
         "author": author_object
     }
     return render(request, 'author.html', context)
+
+def categorywise_list(request, slug):
+    category_object = get_object_or_404(Category, slug=slug)
+    books = Product.objects.filter(category=category_object, in_stock=True)
+
+    context = {
+        "books": books,
+        "category": category_object
+    }
+
+    return context

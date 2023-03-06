@@ -14,7 +14,7 @@
                 <div class="align-items-center justify-content-center author-name-text">
                     <p class="p-4 mb-0">{{author.name }}</p>
                 </div>
-                <div class="p-2 text-align-justify">
+                <div class="p-2 text-align-justify ">
                     <p class="mb-0">{{author.bio}}</p>
                 </div>
             </div>
@@ -22,14 +22,14 @@
 
         <div class="row mt-3">
             {% for book in books %}
-            <div class='col-md-4 col-lg-4 col-sm-2'>
+            <div class='col-md-4 col-lg-4 col-sm-2 mt-2'>
                 <div class='card cards_book h-100'>
                     <div class="book-img pt-2">
                         <img src={{ book.cover.url }} class="card-img-top">
                     </div>
                     <div class="card-body text-center d-flex flex-column align-items-center justify-content-end">
-                        <a href="{{ book.get_absolute_url }}"><h5 class="card-title">{{ book.title|title }}</h5></a>
-                        <a href="{{ book.author.get_absolute_url }}"><b>{{book.author}}</b></a>
+                        <a href="{{ book.get_absolute_url }}" class="link-info"><h5 class="card-title">{{ book.title|title }}</h5></a>
+                        <a href="{{ book.author.get_absolute_url }}" class="link-info"><b>{{book.author}}</b></a>
                         <p class="card-text">{{ book.description|capfirst|truncatechars:50 }}</p>
                     </div>
                 </div>
