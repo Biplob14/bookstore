@@ -22,13 +22,14 @@ class Category(models.Model):
     slug = models.SlugField(max_length=256, unique=True)
 
     class Meta:
-        verbose_name_plural = 'Categories'    
+        verbose_name_plural = 'Categories'
 
     def __str__(self):
         return self.name
     
 class Publisher(models.Model):
     name = models.CharField(max_length=256)
+    slug_field = models.SlugField(max_length=256, blank=True)
 
     def __str__(self):
         return self.name

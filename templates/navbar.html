@@ -2,31 +2,35 @@
 
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Bookstore</a>
+        <a class="navbar-brand" href="{% url 'books:all_books' %}">Bookstore</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'books:all_books' %}">Home</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" href="{{c.url}}">All Books</a></li>
+                        <li><a class="dropdown-item" href="{% url 'books:all_books' %}">All Books</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        {% for c in categories %}
-                        <li><a class="dropdown-item" href="#">{{ c.name|title }}</a></li>
+                        {% for category in categories %}
+                            <li><a class="dropdown-item" href="{% url 'books:categorise_books' category.name %}">{{ category.name|title }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link">Disabled</a>
                 </li>
+
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

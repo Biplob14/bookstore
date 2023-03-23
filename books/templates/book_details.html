@@ -10,8 +10,19 @@
             </div>
             <div class="col-md-7 col-lg-7 ps-md-3 ps-lg-5">
                 <h1 class="mb-0 h4">{{ book.title }}</h1>
-                <p class="mb-0">Writer: <span class="lead">{{ book.author }}</span></p>
-                <p>Publisher: <span class="lead">{{ book.publisher }}</span></p>
+
+                <p class="mb-0">Writer: 
+                    <span class="lead">
+                        <a href="{{book.author.get_absolute_url}}">{{ book.author }}</a>
+                    </span>
+                </p>
+
+                <p>Publisher: 
+                    <span class="lead">
+                        <a href="{{book.publisher.get_absolute_url}}">{{ book.publisher }}</a>
+                    </span>
+                </p>
+
                 <p>{{ book.description|slice:":355" }}...</p>
                 <div class="border">
                     <div class="col border-bottom">
@@ -25,7 +36,7 @@
                             <div class="col-6">
                                 <label for="select">Qty: </label>
                                 <!-- <select id="select"> -->
-                                <input type="number" min="1" value="1" class="w-25 quantity-box"></input>
+                                <input type="number" min="1" value="1" class="w-25 quantity-box" />
                                 <!-- </select> -->
 
                             </div>

@@ -15,6 +15,15 @@ def book_list(request):
     }
     return render(request, 'books.html', context)
 
+def book_list_cat(request, bookCategory):
+    books = Product.objects.filter(category__name=bookCategory)
+
+    context = {
+        'books': books
+    }
+
+    return render(request, 'books.html', context)
+
 def book_details(request, slug):
     book = get_object_or_404(Product, slug_field=slug, in_stock=True)
     context = {

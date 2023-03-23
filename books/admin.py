@@ -13,9 +13,13 @@ class AuthorAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug_field': ('name', )}
 
 @admin.register(Product)
-class ProductFilter(admin.ModelAdmin):
+class ProductaAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'category', 'price']
     list_filter = ['in_stock', 'is_active']
     prepopulated_fields = {'slug_field': ('title', )}
 
-admin.site.register(Publisher)
+@admin.register(Publisher)
+class PublisherAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug_field']
+    list_filter = ['name', 'slug_field']
+    prepopulated_fields = {'slug_field': ('name', )}
