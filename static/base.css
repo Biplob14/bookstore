@@ -13,6 +13,12 @@ body {
     color: var(--radiant-blue) !important;
 }
 
+/* navbar dropdown on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* remove the gap so it doesn't close */
+}
+
 .book-img {
     margin: 0 auto;
     width: 100%;
@@ -76,5 +82,9 @@ input[type=number]::-webkit-inner-spin-button {
 /* signup page */
 
 form>p>label {
-    border: 2px solid red;
+    /* border: 2px solid red; */
+}
+
+.signup-form button[type="submit"] {
+    /* border: 2px solid red !important; */
 }
