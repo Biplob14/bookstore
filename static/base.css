@@ -13,6 +13,16 @@ body {
     color: var(--radiant-blue) !important;
 }
 
+li>a.dropdown-item{
+    transition: .2s ease-in-out;
+
+}
+
+li>a.dropdown-item:hover {
+    background-color: var(--radiant-blue);
+    color: white;
+}
+
 /* navbar dropdown on hover */
 .dropdown:hover .dropdown-menu {
     display: block;

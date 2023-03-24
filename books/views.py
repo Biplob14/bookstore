@@ -4,7 +4,7 @@ from .models import Author, Category, Publisher, Product
 # Create your views here.
 def category_list(request):
     return {
-        "categories": Category.objects.all()
+        "categories": Category.objects.all().order_by('name')
     }
 
 def book_list(request):
