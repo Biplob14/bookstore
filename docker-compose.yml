@@ -1,58 +1,33 @@
-version: '3'
 services:
-  bookstore:
+  app:
+    build: .
+    volumes:
+      - .:/django
+    ports:
+      - 8080:8000
+    image: app:django
+    container_name: django_container
+    command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - db
-    # restart: always
-    build:
-      context: .
-
-    volumes:
-      - .:/app
-      - static_volume:/app/backend/static
-    ports:
-      - "8080:8000"
-    env_file:
-      - ./.env/backend.env
-    image: bookstore:web
-    container_name: bookstore
-
-    command: sh -c "python manage.py makemigrations &&
-                    python manage.py migrate &&
-                    python manage.py runserver 0.0.0.0:8000"
 
   db:
     image: postgres
-    restart: always
-    container_name: pg_db
+    volumes:
+      - ./data/db/:/var/lib/postgres/data
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data/
-    # networks:
-    #   - main
 
   pgadmin:
+    image: dpage/pgadmin4
+    container_name: storeDB
     depends_on:
       - db
-    container_name: storeDB
-    image: dpage/pgadmin4
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
-      - "5050:80"    
-    # networks:
-    #   - main
-
-# networks:
-#   main:
-
-volumes:
-  pgdata:
-  static_volume:
+      - "5050:80"
