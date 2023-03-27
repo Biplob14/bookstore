@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .forms import RegistrationForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
+from django.contrib.auth.forms import AuthenticationForm
 
 
 # Create your views here.
@@ -29,19 +30,20 @@ def user_registration(request):
     return render(request, "signup.html", context)
 
 def login_user(request):
-    form = LoginForm(request.POST)
+    form = form = AuthenticationForm(request, data=request.POST)
     if request.method == "POST":
         if form.is_valid():
-            username = request.data.get('username')
-            password = request.data.get('password')
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-                redirect('books.all_books')
+                return redirect('books:all_books')
             else:
                 pass
     return render(request, 'login.html', {'form': form})
 
 def logout_user(request):
     logout(request)
-    redirect('books.all_books')
+    return redirect('books:all_books')
