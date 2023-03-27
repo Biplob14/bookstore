@@ -1,18 +1,26 @@
+version: '3'
+
 services:
-  app:
+  bookstore_backend:
     build: .
     volumes:
-      - .:/django
+      - .:/app
+    env_file:
+      - .env/backend.env
     ports:
       - 8080:8000
     image: app:django
-    container_name: django_container
-    command: python manage.py runserver 0.0.0.0:8000
+    container_name: bookstore_backend
+    command: bash -c "
+            python manage.py makemigrations &&
+            python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db
 
   db:
     image: postgres
+    container_name: storeDB
     volumes:
       - ./data/db/:/var/lib/postgres/data
     environment:
@@ -22,7 +30,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: storeDB
+    container_name: pgadmin
     depends_on:
       - db
     restart: always

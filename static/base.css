@@ -24,7 +24,7 @@ li>a.dropdown-item:hover {
 }
 
 /* navbar dropdown on hover */
-.dropdown:hover .dropdown-menu {
+.dropdown-cat:hover .dropdown-menu-cat {
     display: block;
     margin-top: 0; /* remove the gap so it doesn't close */
 }

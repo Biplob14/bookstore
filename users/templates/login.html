@@ -1,1 +1,17 @@
-login page
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+<section class="vh-100">
+    <div class="d-flex justify-content-center align-item-center">
+
+        <h2>LogIn</h2>
+        <form method="post" class="ligin-form">
+            {% csrf_token %}
+            {% for f in form %}
+            {{f}} <br>
+            {% endfor %}
+        </form>
+    </div>
+</section>
+{% endblock %}

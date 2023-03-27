@@ -16,9 +16,9 @@
                     <a class="nav-link" href="#">Link</a>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown dropdown-cat">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                    <ul class="dropdown-menu dropdown-menu-cat" aria-labelledby="navbarScrollingDropdown">
                         <li><a class="dropdown-item" href="{% url 'books:all_books' %}">All Books</a></li>
                         <li><hr class="dropdown-divider"></li>
                         {% for category in categories %}
@@ -37,8 +37,20 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
-        <p class="text-white">Login/</p>
-        <p class="text-white">signup</p>
+        {% if user.is_authenticated %}
+        <div class="mr-4">
+
+            <div class="nav-item dropdown me-5 pe-3">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hello, {{ user.username|title }}</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                    <li><a class="dropdown-item" href="{% url 'users:logout_user' %}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        {% else %}
+        <p class="text-white"><a href="{% url 'users:user_register' %}">Login/</a></p>
+        <p class="text-white"><a href="{% url 'users:user_register' %}">signup</a></p>
+        {% endif %}
     </div>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
