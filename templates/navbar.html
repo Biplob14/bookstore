@@ -48,8 +48,9 @@
             </div>
         </div>
         {% else %}
-        <p class="text-white"><a href="{% url 'users:user_register' %}">Login/</a></p>
-        <p class="text-white"><a href="{% url 'users:user_register' %}">signup</a></p>
+        <p class="text-white login-btn"><a href="{% url 'users:user_login' %}">Login </a></p>
+        <p class="text-white login-signup-space">&nbsp; OR &nbsp;</p>
+        <p class="text-white signup-btn"><a href="{% url 'users:user_register' %}">Signup</a></p>
         {% endif %}
     </div>
 </nav>

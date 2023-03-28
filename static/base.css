@@ -29,6 +29,17 @@ li>a.dropdown-item:hover {
     margin-top: 0; /* remove the gap so it doesn't close */
 }
 
+.login-btn>a, .signup-btn>a {
+    color: var(--radiant-blue);
+    text-underline-offset: none;
+    font-size: 18px;
+    transition: .5s ease-in-out;
+}
+
+.login-btn>a:link, .signup-btn>a:link {
+    text-decoration: none;
+}
+
 .book-img {
     margin: 0 auto;
     width: 100%;
