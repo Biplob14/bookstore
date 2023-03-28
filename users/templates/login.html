@@ -10,6 +10,7 @@
                 {% csrf_token %}
                 {% for f in form %}
                     <div class="mb-5">
+                        {{ f.label_tag }}<br>
                         {{f.field.value}}
                         {{f}} <br>
                     </div>
