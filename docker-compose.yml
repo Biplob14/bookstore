@@ -21,6 +21,7 @@ services:
   db:
     image: postgres
     container_name: storeDB
+    restart: unless-stopped
     volumes:
       - ./data/db/:/var/lib/postgres/data
     environment:
