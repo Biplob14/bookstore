@@ -5,39 +5,9 @@
 * {
     margin: 0 auto;
 }
+
 body {
     background-color: rgb(118, 113, 113);
-}
-
-.nav-link:hover {
-    color: var(--radiant-blue) !important;
-}
-
-li>a.dropdown-item{
-    transition: .2s ease-in-out;
-
-}
-
-li>a.dropdown-item:hover {
-    background-color: var(--radiant-blue);
-    color: white;
-}
-
-/* navbar dropdown on hover */
-.dropdown-cat:hover .dropdown-menu-cat {
-    display: block;
-    margin-top: 0; /* remove the gap so it doesn't close */
-}
-
-.login-btn>a, .signup-btn>a {
-    color: var(--radiant-blue);
-    text-underline-offset: none;
-    font-size: 18px;
-    transition: .5s ease-in-out;
-}
-
-.login-btn>a:link, .signup-btn>a:link {
-    text-decoration: none;
 }
 
 .book-img {
