@@ -3,19 +3,20 @@
 {% block title %}All Books{% endblock %}
 {% block content %}
 
+
     {% for book in books %}
-    <div class='col-md-4 col-lg-4 col-sm-2'>
-        <div class='card cards_book h-100'>
-            <div class="book-img pt-2">
-                <img src={{ book.cover.url }} class="card-img-top">
+            <div class='col mt-2 mb-2 book-cart'>
+                <div class='card cards_book h-100 me-2'>
+                    <div class="book-img pt-2">
+                        <img src={{ book.cover.url }} class="card-img-top">
+                    </div>
+                    <div class="card-body text-center d-flex flex-column align-items-center justify-content-end">
+                        <a href="{{ book.get_absolute_url }}" class="link-info"><h5 class="card-title">{{ book.title|title }}</h5></a>
+                        <a href="{{ book.author.get_absolute_url }}" class="link-info"><b>{{book.author}}</b></a>
+                        <p class="card-text">{{ book.description|capfirst|truncatechars:50 }}</p>
+                    </div>
+                </div>
             </div>
-            <div class="card-body text-center d-flex flex-column align-items-center justify-content-end">
-                <a href="{{ book.get_absolute_url }}" class="link-info"><h5 class="card-title">{{ book.title|title }}</h5></a>
-                <a href="{{ book.author.get_absolute_url }}" class="link-info"><b>{{book.author}}</b></a>
-                <p class="card-text">{{ book.description|capfirst|truncatechars:50 }}</p>
-            </div>
-        </div>
-    </div>
     {% endfor %}
 
 {% endblock %}
