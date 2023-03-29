@@ -4,7 +4,10 @@ from django.urls import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
+
+
 class Author(models.Model):
+
     name = models.CharField(max_length=256)
     image = models.ImageField(upload_to='images/author/', blank=True)
     slug_field = models.SlugField(max_length=256, blank=True)
@@ -13,11 +16,12 @@ class Author(models.Model):
     def get_absolute_url(self):
         return reverse("books:author_books", args=[self.slug_field])
 
-    
     def __str__(self):
         return self.name
 
+
 class Category(models.Model):
+
     name = models.CharField(max_length=256, unique=True)
     slug = models.SlugField(max_length=256, unique=True)
 
@@ -26,15 +30,19 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Publisher(models.Model):
+
     name = models.CharField(max_length=256)
     slug_field = models.SlugField(max_length=256, blank=True)
 
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
+
     title = models.CharField(max_length=256)
     price = models.IntegerField()
     author = models.ForeignKey(Author, on_delete=models.DO_NOTHING)
@@ -48,7 +56,7 @@ class Product(models.Model):
     in_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     slug_field = models.SlugField(max_length=256, unique=True)
-    rating = models.IntegerField(default=0, validators = [MaxValueValidator(5), MinValueValidator(1)])
+    rating = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(1)])
 
     class Meta:
         verbose_name = 'Product'
@@ -56,7 +64,6 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('books:book_details', args=[self.slug_field])
-
 
     def __str__(self):
         return self.title
