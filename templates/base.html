@@ -17,11 +17,8 @@
         {% block navbar %}
         {% include 'navbar.html' %}
         {% endblock%}
-        <div id="content" class="container">
-            <div class="row row-cols-1 row-cols-md-3 justify-content-start g-0">
-                {% block content %} {% endblock %}
-            </div>
-        </div>
+
+        {% block content %} {% endblock %}
         
         {% include 'footer.html' %}
     </body>
