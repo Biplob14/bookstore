@@ -20,6 +20,7 @@ class AuthorAdmin(admin.ModelAdmin):
 class ProductaAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'category', 'price']
     list_filter = ['in_stock', 'is_active']
+    list_editable = ['price', 'author']
     prepopulated_fields = {'slug_field': ('title', )}
 
 

@@ -2,10 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from .models import Author, Category, Publisher, Product
 
 # Create your views here.
-def category_list(request):
-    return {
-        "categories": Category.objects.all().order_by('name')
-    }
 
 def book_list(request):
     books = Product.objects.all()
