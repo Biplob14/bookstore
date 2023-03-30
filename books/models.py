@@ -40,6 +40,11 @@ class Publisher(models.Model):
     def __str__(self):
         return self.name
 
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        queryset = super(ProductManager, self).get_queryset()
+        queryset = queryset.filter(is_active=True)
+        return queryset
 
 class Product(models.Model):
 
@@ -49,7 +54,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
     publisher = models.ForeignKey(Publisher, on_delete=models.DO_NOTHING)
     description = models.TextField(blank=True)
-    cover = models.ImageField(upload_to='images/product', blank=True)
+    cover = models.ImageField(upload_to='images/product', blank=True, default='images/defaults/book.jpeg')
     created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -57,6 +62,11 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     slug_field = models.SlugField(max_length=256, unique=True)
     rating = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(1)])
+
+    # default model manager
+    objects = models.Manager()
+    # custom model manager
+    products_available = ProductManager()
 
     class Meta:
         verbose_name = 'Product'

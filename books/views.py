@@ -4,7 +4,8 @@ from .models import Author, Category, Publisher, Product
 # Create your views here.
 
 def book_list(request):
-    books = Product.objects.all()
+    # query with custom model manager product
+    books = Product.products_available.all()
 
     context = {
         'books': books

@@ -18,9 +18,9 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductaAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'category', 'price']
+    list_display = ['title', 'author', 'category', 'price', 'is_active']
     list_filter = ['in_stock', 'is_active']
-    list_editable = ['price', 'author']
+    list_editable = ['price', 'author', 'is_active']
     prepopulated_fields = {'slug_field': ('title', )}
 
 
