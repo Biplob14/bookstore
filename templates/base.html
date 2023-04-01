@@ -22,8 +22,8 @@
         
         {% include 'footer.html' %}
     </body>
-    <script>
-        let footer = document.getElementById('footer_large');
+    <script src="{% static 'scripts/footer_position.js' %}">
+        {% comment %} let footer = document.getElementById('footer_large');
         let footer_height = footer.scrollHeight;
 
         let navbar = document.getElementById('navbar');
@@ -32,7 +32,7 @@
         let content = document.getElementById('content');
         let window_height = window.innerHeight;
         content.style.minHeight= `${window_height - footer_height - navbar_height}px`;
-        console.log(navbar_height)
+        console.log(navbar_height) {% endcomment %}
         
     </script>
 </html>

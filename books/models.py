@@ -69,7 +69,6 @@ class Product(models.Model):
     products_available = ProductManager()
 
     class Meta:
-        verbose_name = 'Product'
         verbose_name_plural = 'Products'
 
     def get_absolute_url(self):
