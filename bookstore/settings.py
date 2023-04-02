@@ -56,7 +56,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # context processor which will allow all templates to get these values
-                'books.context_processors.category_list'
+                'books.context_processors.category_list',
+                'cart.context_processors.cart',
             ],
         },
     },
