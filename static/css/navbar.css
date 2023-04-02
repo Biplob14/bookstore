@@ -2,6 +2,16 @@
     color: var(--radiant-blue) !important;
 }
 
+nav .cart-item {
+    color: var(--radiant-blue);
+    transition: .2s linear;
+}
+nav .cart-item:hover {
+    background-color: var(--radiant-blue);
+    color: #000;
+    scale: 1.2;
+}
+
 li>a.dropdown-item{
     transition: .2s ease-in-out;
 
