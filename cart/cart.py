@@ -12,4 +12,3 @@ class CartManager():
         if 'skey' not in self.session:
             cart = self.session['skey'] = {}
         self.cart = cart
-    

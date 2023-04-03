@@ -7,4 +7,3 @@ let navbar_height = navbar.scrollHeight;
 let content = document.getElementById('content');
 let window_height = window.innerHeight;
 content.style.minHeight= `${window_height - footer_height - navbar_height}px`;
-console.log(navbar_height)
