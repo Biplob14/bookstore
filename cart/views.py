@@ -2,10 +2,10 @@ from django.shortcuts import render
 from cart.cart import CartManager
 from django.shortcuts import get_object_or_404
 from books.models import Product
-from .cart import CartManager
 from django.http import JsonResponse
 
 # Create your views here.
+
 
 def view_cart_items(request):
     cart = CartManager(request)
@@ -13,6 +13,7 @@ def view_cart_items(request):
         "cart": cart
     }
     return render(request, 'cart.html', context)
+
 
 def add_to_cart(request):
     cart = CartManager(request)

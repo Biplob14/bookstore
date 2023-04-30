@@ -1,7 +1,3 @@
-from books.models import Product
-from decimal import Decimal
-
-
 class CartManager():
     ''' handle cart session '''
 
