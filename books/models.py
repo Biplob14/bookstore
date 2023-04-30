@@ -40,11 +40,13 @@ class Publisher(models.Model):
     def __str__(self):
         return self.name
 
+
 class ProductManager(models.Manager):
     def get_queryset(self):
         queryset = super(ProductManager, self).get_queryset()
         queryset = queryset.filter(is_active=True)
         return queryset
+
 
 class Product(models.Model):
 

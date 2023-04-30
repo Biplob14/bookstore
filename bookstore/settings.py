@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # custom apps
     'users',
-    'books'
+    'books',
+    'cart'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # context processor which will allow all templates to get these values
-                'books.context_processors.category_list'
+                'books.context_processors.category_list',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -121,8 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_DIR = os.path.join(BASE_DIR,"static")
-STATICFILES_DIRS = [ STATIC_DIR, ]
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = [STATIC_DIR,]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # AUTH_USER_MODEL = 'users.User'
 

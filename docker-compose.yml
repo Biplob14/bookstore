@@ -39,3 +39,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - "5050:80"
+
+  redis:
+    image: "redis:alpine"
+    container_name: redis
