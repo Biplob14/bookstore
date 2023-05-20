@@ -13,7 +13,7 @@ class CartManager():
         product_id = str(product.id)
 
         if product_id in self.cart:
-            self.cart[product_id]['qty'] = qty
+            self.cart[product_id]['qty'] += qty
         else:
             self.cart[product_id] = {'price': str(product.price), 'qty': qty}
 
