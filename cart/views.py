@@ -10,8 +10,10 @@ from django.http import JsonResponse
 def view_cart_items(request):
     cart = CartManager(request)
     context = {
-        "cart": cart
+        "cart": cart.__iter__()
     }
+    print("view from cart   ")
+
     return render(request, 'cart.html', context)
 
 
