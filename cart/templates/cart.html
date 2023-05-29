@@ -18,29 +18,21 @@
                 </thead>
                 <tbody>
                     {% for item in cart %}
+                    {% with product=item.product %}
                     <tr>
                         {% comment %} <th scope="row">1</th> {% endcomment %}
                         <td>
-                            <div><img src={{item.product.cover.url}}></div>
-                            <div>{{ item.product.title }}</div>
+                            <div><img src={{product.cover.url}} width="100px"></div>
+                            <div>
+                                <a href="{{product.get_absolute_url}}">{{ product.title }}</a>
+                            </div>
                         </td>
                         <td>{{ item.price }}</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>{{ item.qty }}</td>
+                        <td>{{ item.total_price }}</td>
                     </tr>
+                    {% endwith %}
                     {% endfor %}
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
                 </tbody>
             </table>
         </div>

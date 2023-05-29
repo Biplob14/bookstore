@@ -27,20 +27,20 @@ class CartManager():
         product_ids = self.cart.keys()
         products = Product.products_available.filter(id__in=product_ids)
         cart = self.cart.copy()
+
         for product in products:
             cart[str(product.id)]['product'] = product
 
         for item in cart.values():
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price'] * item['qty']
-
-        print("iter: ", cart.values())
-        yield item
+            yield item
 
     def __len__(self):
         '''
         basket data and count item quantity
         '''
+        print("from len")
         return sum(item['qty'] for item in self.cart.values())
 
     def save(self):
