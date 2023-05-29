@@ -11,25 +11,30 @@
                 <thead>
                     <tr>
                         <th scope="col">Item</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                        <th scope="col" class="text-center">Price</th>
+                        <th scope="col" class="text-center">Quantity</th>
+                        <th scope="col" class="text-center">Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in cart %}
                     {% with product=item.product %}
                     <tr>
-                        {% comment %} <th scope="row">1</th> {% endcomment %}
-                        <td>
+                        <td class="item-image">
                             <div><img src={{product.cover.url}} width="100px"></div>
-                            <div>
-                                <a href="{{product.get_absolute_url}}">{{ product.title }}</a>
+                        </td>
+                        <td class="item-details">
+                            <div class="d-flex flex-column">
+                                <a href="{{product.get_absolute_url}}" class="">{{ product.title }}</a>
+                                <a href="" class="">{{ product.author }}</a>
                             </div>
                         </td>
-                        <td>{{ item.price }}</td>
-                        <td>{{ item.qty }}</td>
-                        <td>{{ item.total_price }}</td>
+                        <td class="item-price text-center">{{ item.price }} BDT</td>
+                        <td class="item-quantity text-center">
+                            <input type="number" min="1" value="{{ item.qty }}" id="prod-qty" class="quantity-box" />
+                        </td>
+                        <td class="item-subtotal text-center">{{ item.total_price }} BDT</td>
                     </tr>
                     {% endwith %}
                     {% endfor %}
