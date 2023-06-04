@@ -40,8 +40,21 @@ class CartManager():
         '''
         basket data and count item quantity
         '''
-        print("from len")
         return sum(item['qty'] for item in self.cart.values())
+
+    def get_total_price(self):
+        print("get total price")
+        return sum(Decimal(item['price']) * item['qty'] for item in self.cart.values())
+
+    def delete(self, product):
+        '''
+        Delete item from cart session
+        '''
+        product_id = product
+
+        if product_id in self.cart:
+            del self.cart[product_id]
+            self.save()
 
     def save(self):
         self.session.modified = True

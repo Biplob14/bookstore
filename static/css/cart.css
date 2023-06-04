@@ -24,3 +24,30 @@
 #prod-qty {
     width: 64px;
 }
+
+/* cart item delete button */
+.delete-item {
+    position: relative;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.5;
+}
+.delete-item:hover {
+    opacity: 1;
+}
+.delete-item:before, .delete-item:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 30px;
+    width: 2px;
+    background-color: red;
+}
+.delete-item:before {
+    transform: rotate(45deg);
+}
+.delete-item:after {
+    transform: rotate(-45deg);
+}

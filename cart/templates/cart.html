@@ -6,42 +6,82 @@
 <main class="pt-5">
     <div class='container'>
         <h1 class="h5 text-center mb-5">Shopping Cart </h1>
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Item</th>
-                        <th scope="col"></th>
-                        <th scope="col" class="text-center">Price</th>
-                        <th scope="col" class="text-center">Quantity</th>
-                        <th scope="col" class="text-center">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in cart %}
-                    {% with product=item.product %}
-                    <tr>
-                        <td class="item-image">
-                            <div><img src={{product.cover.url}} width="100px"></div>
-                        </td>
-                        <td class="item-details">
-                            <div class="d-flex flex-column">
-                                <a href="{{product.get_absolute_url}}" class="">{{ product.title }}</a>
-                                <a href="" class="">{{ product.author }}</a>
-                            </div>
-                        </td>
-                        <td class="item-price text-center">{{ item.price }} BDT</td>
-                        <td class="item-quantity text-center">
-                            <input type="number" min="1" value="{{ item.qty }}" id="prod-qty" class="quantity-box" />
-                        </td>
-                        <td class="item-subtotal text-center">{{ item.total_price }} BDT</td>
-                    </tr>
-                    {% endwith %}
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="d-flex">
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col"></th>
+                            <th scope="col" class="text-center">Price</th>
+                            <th scope="col" class="text-center">Quantity</th>
+                            <th scope="col" class="text-center">Total</th>
+                            <th scope="col" class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart %}
+                        {% with product=item.product %}
+                        <tr>
+                            <td class="item-image">
+                                <div><img src={{product.cover.url}} width="100px"></div>
+                            </td>
+                            <td class="item-details">
+                                <div class="d-flex flex-column">
+                                    <a href="{{product.get_absolute_url}}" class="">{{ product.title }}</a>
+                                    {% comment %} <hr> {% endcomment %}
+                                    <a href="" class="">{{ product.author }}</a>
+                                </div>
+                            </td>
+                            <td class="item-price text-center">{{ item.price }} BDT</td>
+                            <td class="item-quantity text-center">
+                                <input type="number" min="1" value="{{ item.qty }}" id="prod-qty" class="quantity-box" />
+                            </td>
+                            <td class="item-subtotal text-center">{{ item.total_price }} BDT</td>
+                            <td class="text-center">
+                                <div class="d-flex flex-column ">
+                                    <a href="#" class="delete-item" data-index={{product.id}}></a>
+                                    {% comment %} <button>delete</button> {% endcomment %}
+                                </div>
+                            </td>
+                        </tr>
+                        {% endwith %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="summary-column">
+                <h3>Summary {{basket.get_total_price}}</h3>
+            </div>
         </div>
         
     </div>
 </main>
+
+<script>
+//delete single item
+$(document).on("click", ".delete-item", function(e){
+    e.preventDefault();
+    var prod_id = $(this).data("index")
+    console.log(prod_id)
+    $.ajax({
+        type: "POST",
+        url: '{% url cart:delete_cart_items%}',
+        data: {
+            productid: $(this).data(index),
+            productqty: $("#select" + prodid + " option:selected").text(),
+            csrfmiddlewaretoken: "{{csrf_token}}",
+            action: 'post'
+        },
+        success: function(json) {
+            total = (parseFloat(json.subtotal) + 11.50).toFixed(2);
+            document.getElementById("basket-qty").innerHTML = json.qty;
+            document.getElementById("subtotal").innerHTML = json.subtotal;
+            document.getElementById("total").innerHTML = total;
+        },
+        error: function(xhr, errmsg, err) {},
+    });
+});
+</script>
+
 {% endblock %}

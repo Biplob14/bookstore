@@ -9,7 +9,7 @@ from django.http import JsonResponse
 
 def view_cart_items(request):
     context = {"cart": CartManager(request)}
-    
+
     return render(request, 'cart.html', context)
 
 
@@ -25,4 +25,15 @@ def add_to_cart(request):
         cartqty = cart.__len__()
         response = JsonResponse({'qty': cartqty})
         print("####################", response)
+        return response
+
+def cart_item_del(request):
+    cart = CartManager(request)
+    if request.POST.get('action') == 'post':
+        product_id = int(request.POST.get('productid'))
+        # invoke delete method from cart
+        cart.delete(product=product_id)
+        response = JsonResponse({
+            'success': True
+        })
         return response
