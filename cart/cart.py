@@ -50,9 +50,10 @@ class CartManager():
         '''
         Delete item from cart session
         '''
-        product_id = product
-
+        product_id = str(product)
+        print('### session delete ###', product_id)
         if product_id in self.cart:
+            print('deleting irem from cart')
             del self.cart[product_id]
             self.save()
 

@@ -30,10 +30,14 @@ def add_to_cart(request):
 def cart_item_del(request):
     cart = CartManager(request)
     if request.POST.get('action') == 'post':
+        print("########### Delete item #############")
         product_id = int(request.POST.get('productid'))
         # invoke delete method from cart
         cart.delete(product=product_id)
+        cart_total = cart.get_total_price()
         response = JsonResponse({
-            'success': True
+            'success': True,
+            "cart_total": cart_total
         })
+
         return response
