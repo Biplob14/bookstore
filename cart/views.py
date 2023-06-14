@@ -34,10 +34,12 @@ def cart_item_del(request):
         product_id = int(request.POST.get('productid'))
         # invoke delete method from cart
         cart.delete(product=product_id)
+        qty = cart.__len__()
         cart_total = cart.get_total_price()
         response = JsonResponse({
             'success': True,
-            "cart_total": cart_total
+            "cart_total": cart_total,
+            "qty": qty
         })
 
         return response

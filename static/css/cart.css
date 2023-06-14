@@ -21,7 +21,7 @@
     color: var(--radiant-blue);
 }
 
-#prod-qty {
+.quantity-box {
     width: 64px;
 }
 
