@@ -57,5 +57,17 @@ class CartManager():
             del self.cart[product_id]
             self.save()
 
+    def update(self, product, prod_qty):
+        '''
+        update product on session
+        '''
+        product_id = str(product)
+        # prod_qty = int(prod_qty)
+        if product_id in self.cart:
+            print("session item: ", self.cart)
+            self.cart[product_id]['qty'] = int(prod_qty)
+            self.save()
+
+
     def save(self):
         self.session.modified = True
