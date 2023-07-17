@@ -8,10 +8,8 @@ from django.http import JsonResponse
 
 
 def view_cart_items(request):
-    cart = CartManager(request)
-    context = {
-        "cart": cart
-    }
+    context = {"cart": CartManager(request)}
+
     return render(request, 'cart.html', context)
 
 
@@ -20,11 +18,46 @@ def add_to_cart(request):
     if request.POST.get('action') == 'post':
         product_id = int(request.POST.get('productid'))
         product_qty = int(request.POST.get('productqty'))
+        print(product_id, " ", product_qty)
         product_obj = get_object_or_404(Product, id=product_id)
         cart.add(product=product_obj, qty=product_qty)
-        print("on add to cart.........................", product_obj)
 
         cartqty = cart.__len__()
+        print("quantity: ", cartqty)
         response = JsonResponse({'qty': cartqty})
-        print("####################", response)
+        return response
+
+def cart_item_del(request):
+    cart = CartManager(request)
+    if request.POST.get('action') == 'post':
+        product_id = int(request.POST.get('productid'))
+        # invoke delete method from cart
+        cart.delete(product=product_id)
+        qty = cart.__len__()
+        cart_total = cart.get_total_price()
+        response = JsonResponse({
+            'success': True,
+            "cart_total": cart_total,
+            "qty": qty
+        })
+
+        return response
+
+def cart_item_update(request):
+    cart = CartManager(request)
+    if request.POST.get('action') == 'post':
+        product_id = request.POST.get('productid')
+        product_qty = request.POST.get('product_qty')
+        print("qty: ", type(product_qty))
+
+        print('cart update process: ', type(product_id))
+        cart.update(product_id, product_qty)
+        qty = cart.__len__()
+        cart_total = cart.get_total_price()
+
+        response = JsonResponse({
+            'success': True,
+            "cart_total": cart_total,
+            "qty": qty
+        })
         return response

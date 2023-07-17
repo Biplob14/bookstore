@@ -32,15 +32,17 @@ li>a.dropdown-item:hover {
 .book-img {
     margin: 0 auto;
     width: 100%;
-    max-width: 250px;
+    max-width: 2500px;
     height: auto;
     max-height: 420px;
     transition: color linear .2s;
+    border: 2px solid pink;
 }
+
 .book-img>img {
     height: 400px;
     object-fit: cover;
-    
+    max-width: 250px;
 }
 .book-img:hover {
     opacity: .6 red;

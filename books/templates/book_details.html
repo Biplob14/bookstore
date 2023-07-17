@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{book.title}}{% endblock %}
 
 {% block content %}
-<div id="content" class="container">
+<div id="" class="container">
     <div class="row justify-content-start g-0">
         <main class="pt-5">
             <div class="row g-3">
@@ -43,7 +44,7 @@
 
                                 </div>
                                 <div class="col-6 text-end">
-                                    <button type="button" class="btn btn-secondary btn-sm" id="add-to-cart" value="{{book.id}}">
+                                    <button type="button" class="btn btn-secondary btn-sm" id="add-to-cart" value="{{book.id}}" data-url='{% url "cart:add_to_cart" %}' onclick="cartItem(this);">
                                         Add to basket
                                     </button>
                                 </div>
@@ -55,28 +56,6 @@
         </main>
     </div>
 </div>
-<script>
-    //let prod_q = document.getElementById("prod-qty").value;
-    //console.log(prod_q);
-    
-    $(document).on('click', '#add-to-cart', function(e){
-        console.log($('#prod-qty').val())
 
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: '{% url "cart:add_to_cart" %}',
-            data: {
-                productid: $('#add-to-cart').val(),
-                productqty: $('#prod-qty').val(),
-                csrfmiddlewaretoken: "{{csrf_token}}",
-                action: 'post'
-            },
-            success: function(json) {
-                document.getElementById("basket-qty").innerHTML = json.qty
-            },
-            error: function(xhr, errmsg, err) {}
-        });
-    })
-</script>
+<script src="{% static 'scripts/cart.js' %}"></script>
 {% endblock %}
