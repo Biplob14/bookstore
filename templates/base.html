@@ -25,6 +25,9 @@
         
         {% include 'footer.html' %}
     </body>
+    <script>
+        var CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
     <script src="{% static 'scripts/footer_position.js' %}">
         {% comment %} let footer = document.getElementById('footer_large');
         let footer_height = footer.scrollHeight;
@@ -39,3 +42,4 @@
         
     </script>
 </html>
+

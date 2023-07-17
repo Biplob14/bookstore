@@ -15,7 +15,7 @@ body {
     width: 100%;
     height: auto;
     max-height: 420px;
-    transition: color linear .2s;
+    /* transition: color linear .2s; */
 }
 .book-img>img {
     max-width: 250px;
@@ -31,6 +31,7 @@ body {
 .hidden-content {
     position: absolute;
     display: none;
+    transition: .5s ease;
 }
 .overlay:hover .hidden-content {
     display: flex;
@@ -42,11 +43,13 @@ body {
     min-height: 420px;
     opacity: 0.8;
     z-index: 1;
+    transition: .5s ease-in-out;
 }
 
 .overlay:hover .add-to-cart-btn {
     opacity: 1;
     height: 50px;
+    background-color: red;
 }
 
 .overlay:hover .card-img-top{
