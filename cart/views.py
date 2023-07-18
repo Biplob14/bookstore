@@ -27,6 +27,7 @@ def add_to_cart(request):
         response = JsonResponse({'qty': cartqty})
         return response
 
+
 def cart_item_del(request):
     cart = CartManager(request)
     if request.POST.get('action') == 'post':
@@ -34,6 +35,7 @@ def cart_item_del(request):
         # invoke delete method from cart
         cart.delete(product=product_id)
         qty = cart.__len__()
+
         cart_total = cart.get_total_price()
         response = JsonResponse({
             'success': True,
@@ -43,21 +45,23 @@ def cart_item_del(request):
 
         return response
 
+
 def cart_item_update(request):
     cart = CartManager(request)
     if request.POST.get('action') == 'post':
         product_id = request.POST.get('productid')
         product_qty = request.POST.get('product_qty')
-        print("qty: ", type(product_qty))
 
-        print('cart update process: ', type(product_id))
         cart.update(product_id, product_qty)
         qty = cart.__len__()
+        item_total = cart.get_item_total_price(product_id)
+        print("item total: ", item_total)
         cart_total = cart.get_total_price()
-
         response = JsonResponse({
             'success': True,
             "cart_total": cart_total,
-            "qty": qty
+            "qty": qty,
+            "item_total": item_total
+
         })
         return response

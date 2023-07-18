@@ -1,6 +1,7 @@
 from books.models import Product
 from decimal import Decimal
 
+
 class CartManager():
     ''' handle cart session '''
 
@@ -46,6 +47,13 @@ class CartManager():
         print("get total price")
         return sum(Decimal(item['price']) * item['qty'] for item in self.cart.values())
 
+    def get_item_total_price(self, product):
+        if product in self.cart:
+
+            print("product in cart: ", self.cart[product])
+
+        return Decimal(self.cart[product]['price']) * Decimal(self.cart[product]['qty'])
+
     def delete(self, product):
         '''
         Delete item from cart session
@@ -67,7 +75,6 @@ class CartManager():
             print("session item: ", self.cart)
             self.cart[product_id]['qty'] = int(prod_qty)
             self.save()
-
 
     def save(self):
         self.session.modified = True
