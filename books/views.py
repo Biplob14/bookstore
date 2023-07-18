@@ -31,7 +31,6 @@ def book_details(request, slug):
     }
     return render(request, 'book_details.html', context)
 
-
 def author_books(request, slug):
     author_object = get_object_or_404(Author, slug_field=slug)
     books = Product.objects.filter(author=author_object, in_stock=True)
@@ -41,7 +40,6 @@ def author_books(request, slug):
         "author": author_object
     }
     return render(request, 'author.html', context)
-
 
 def categorywise_list(request, slug):
     category_object = get_object_or_404(Category, slug=slug)
