@@ -11,8 +11,7 @@ function cartItem(attr){
         request_url = $('#add-to-cart-btn').data('url')
         product_id = attr.value
     }
-    console.log("product id: " + product_id)
-    console.log("product qty: " + product_qty)
+    
     $.ajax({
         type: 'POST',
         url: request_url,
@@ -29,22 +28,3 @@ function cartItem(attr){
         error: function(xhr, errmsg, err) {}
     });
 }
-// $(document).on('click', '#add-to-cart', function(e){
-//     console.log($('#prod-qty').val())
-
-//     e.preventDefault();
-//     $.ajax({
-//         type: 'POST',
-//         url: $('#add-to-cart').data('url'),
-//         data: {
-//             productid: $('#add-to-cart').val(),
-//             productqty: $('#prod-qty').val(),
-//             csrfmiddlewaretoken: CSRF_TOKEN,
-//             action: 'post'
-//         },
-//         success: function(json) {
-//             document.getElementById("basket-qty").innerHTML = json.qty
-//         },
-//         error: function(xhr, errmsg, err) {}
-//     });
-// })

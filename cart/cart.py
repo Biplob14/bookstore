@@ -46,6 +46,13 @@ class CartManager():
         print("get total price")
         return sum(Decimal(item['price']) * item['qty'] for item in self.cart.values())
 
+    def get_item_total_price(self, product):
+        if product in self.cart:
+
+            print("product in cart: ", self.cart[product])
+
+        return Decimal(self.cart[product]['price']) * Decimal(self.cart[product]['qty'])
+
     def delete(self, product):
         '''
         Delete item from cart session
