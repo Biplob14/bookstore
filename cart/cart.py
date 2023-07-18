@@ -1,6 +1,7 @@
 from books.models import Product
 from decimal import Decimal
 
+
 class CartManager():
     ''' handle cart session '''
 
@@ -74,7 +75,6 @@ class CartManager():
             print("session item: ", self.cart)
             self.cart[product_id]['qty'] = int(prod_qty)
             self.save()
-
 
     def save(self):
         self.session.modified = True
