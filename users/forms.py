@@ -22,6 +22,7 @@ class RegistrationForm(UserCreationForm):
 
 class LoginForm(forms.ModelForm):
     class Meta:
+        username = forms.CharField(widget=forms.Textarea())
         model = User
         fields = [
             "username",

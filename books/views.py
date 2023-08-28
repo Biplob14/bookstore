@@ -1,12 +1,24 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Author, Category, Product
+from django.db.models import Q
 
 # Create your views here.
 
 
 def book_list(request):
     # query with custom model manager product
-    books = Product.products_available.all()
+    search_post = request.GET.get('search')
+    print("search values: ", search_post)
+    if search_post:
+        books = Product.products_available.filter(
+            Q(author__name__icontains=search_post) | \
+            Q(title__icontains=search_post) | \
+            Q(category__name__icontains=search_post) | \
+            Q(publisher__name__icontains=search_post) | \
+            Q(description__icontains=search_post)
+        )
+    else:
+        books = Product.products_available.all()
 
     context = {
         'books': books
@@ -51,3 +63,6 @@ def categorywise_list(request, slug):
     }
 
     return context
+
+def book_search(request):
+    pass
