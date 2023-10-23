@@ -30,7 +30,7 @@ def user_registration(request):
 
 
 def login_user(request):
-    form = form = AuthenticationForm(request, data=request.POST)
+    form = AuthenticationForm(request, data=request.POST)
     if request.method == "POST":
         if form.is_valid():
             username = form.cleaned_data.get('username')

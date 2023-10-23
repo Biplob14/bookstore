@@ -15,7 +15,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
-
+                
+                {% comment %} books dorpdown {% endcomment %}
                 <li class="nav-item dropdown dropdown-cat">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                     <ul class="dropdown-menu dropdown-menu-cat" aria-labelledby="navbarScrollingDropdown">
@@ -26,14 +27,26 @@
                         {% endfor %}
                     </ul>
                 </li>
+                {% comment %} authors dropdown {% endcomment %}
+                <li class="nav-item dropdown dropdown-cat">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Authors</a>
+                    <ul class="dropdown-menu dropdown-menu-cat" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" href="{% url 'books:all_books' %}">All Books</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        {% for author in authors %}
+                            <li><a class="dropdown-item" href="">{{ author.name|title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link">Disabled</a>
                 </li>
 
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            {% comment %} search field {% endcomment %}
+            <form class="d-flex" role="search" action="{% url 'books:all_books' %}">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" >
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
@@ -60,7 +73,7 @@
         <div class="mr-4">
 
             <div class="nav-item dropdown me-5 pe-3">
-                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hello, {{ user.username|title }}</a>
+                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hello, {{ user.username|title }}</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                     <li><a class="dropdown-item" href="{% url 'users:logout_user' %}">Logout</a></li>
                 </ul>

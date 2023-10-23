@@ -2,17 +2,22 @@
 
 {% block title %}Login{% endblock %}
 {% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css">
+
+
 <section class="vh-100">
     <div class="d-flex">
         <div class="justify-content-center align-item-center">
             <h2>LogIn</h2>
-            <form method="post" class="ligin-form">
+            <form method="post" class="login-form d-flex flex-column">
                 {% csrf_token %}
                 {% for f in form %}
-                    <div class="mb-5">
+                    <div class="mb-5 mt-3">
                         {{ f.label_tag }}<br>
-                        {{f.field.value}}
-                        {{f}} <br>
+                        {{ f.field.value }}
+                        {{ f }}<br>
                     </div>
                 {% endfor %}
                 <button type="submit" class="btn btn-success btn-lg mb-1">LogIn</button>
