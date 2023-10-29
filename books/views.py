@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Author, Category, Product
+from .models import Author, Category, Product, Comment
 from django.db.models import Q
 
 # Create your views here.
@@ -8,7 +8,6 @@ from django.db.models import Q
 def book_list(request):
     # query with custom model manager product
     search_post = request.GET.get('search')
-    print("search values: ", search_post)
     if search_post:
         books = Product.products_available.filter(
             Q(author__name__icontains=search_post) |
@@ -38,8 +37,14 @@ def book_list_cat(request, bookCategory):
 
 def book_details(request, slug):
     book = get_object_or_404(Product, slug_field=slug, in_stock=True)
+    comments = Comment.objects.filter(product=book)
+    print("book: ", comments)
+    for comment in comments:
+        print(comment.body)
+    
     context = {
-        "book": book
+        "book": book,
+        "comments": comments
     }
     return render(request, 'book_details.html', context)
 

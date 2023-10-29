@@ -49,7 +49,6 @@ class ProductManager(models.Manager):
 
 
 class Product(models.Model):
-
     title = models.CharField(max_length=256)
     price = models.IntegerField()
     author = models.ForeignKey(Author, on_delete=models.DO_NOTHING)
@@ -78,3 +77,13 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comment(models.Model):
+    body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.body

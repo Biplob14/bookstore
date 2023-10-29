@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Author, Category, Publisher, Product
+from .models import Author, Category, Publisher, Product, Comment
 # Register your models here.
 
 
@@ -29,3 +29,7 @@ class PublisherAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug_field']
     list_filter = ['name', 'slug_field']
     prepopulated_fields = {'slug_field': ('name', )}
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass
